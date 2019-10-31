@@ -46,7 +46,7 @@ func view() http.HandlerFunc {
 			http.Redirect(w, r, "/edit/"+title, http.StatusFound)
 			return
 		}
-		renderTemplate(w, "view", p)
+		render(w, "view", p)
 	}
 }
 
@@ -57,7 +57,7 @@ func edit() http.HandlerFunc {
 		if err != nil {
 			p = &Page{Title: title} // create a page on the fly
 		}
-		renderTemplate(w, "edit", p)
+		render(w, "edit", p)
 	}
 }
 
@@ -75,10 +75,10 @@ func save() http.HandlerFunc {
 	}
 }
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseFiles("tmpl/edit.html", "tmpl/view.html"))
 
-func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+func render(w http.ResponseWriter, name string, p *Page) {
+	err := templates.ExecuteTemplate(w, name+".html", p)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
