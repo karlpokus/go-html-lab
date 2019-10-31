@@ -13,7 +13,7 @@ How feasable is go for serving web pages and rendering html? We'll start from an
 		redirects to /view/<page>
 
 # todos
-- [ ] add httprouter
+- [x] add httprouter
 - [ ] only admin can edit
 - [ ] check out template syntax here -> https://github.com/golang/blog/blob/master/template/root.tmpl
 
